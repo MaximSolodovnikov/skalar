@@ -27,12 +27,14 @@
         
         <div class="comment-form">
         <div class="info"><?= $info; ?></div>
-        <!--<span class="title_form">Оставить отзыв о сайте</span>-->
-            <form method="POST" action="?act=add_comment">
+            <form method="POST" >
                 <label>Ваше имя:</label><br />
                 <input type="text" name="author" class="text_input" /><br /><br />
                 <label>Оставить отзыв:</label><br />
                 <textarea name="comment" class="form_textarea"></textarea><br /><br />
+                <label>Введите символы с картинки:</label><br />
+                <input name="captcha" value="<?= captcha(); ?>" readonly="readonly" size="1" class="captcha" />
+                <input name="captcha2" value="" size="1" class="captcha" /><br /><br />
                 <input type="submit" name="send" value="Отправить" class="button" />
             </form>
         </div>
