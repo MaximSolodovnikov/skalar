@@ -35,7 +35,7 @@
                 <input type="text" name="author" class="text_input" /><br /><br />
                 <label>Оставить отзыв:</label><br />
                 <textarea name="comment" class="form_textarea"></textarea><br /><br />
-                <label>Введите символы с картинки:</label><br />
+                <label>Введите цифры для проверки:</label><br />
                 <input name="captcha" value="<?= captcha(); ?>" readonly="readonly" size="1" class="captcha" />
                 <input name="captcha2" value="" size="1" class="captcha" /><br /><br />
                 <input type="submit" name="send" value="Отправить" class="button" />

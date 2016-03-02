@@ -1,29 +1,32 @@
 <?php require_once 'fns.php';
 
-        db();
+    db();
 
-        $comments = get_comments();
-        
-        $captcha = $_POST['captcha'];
-        $captcha2 = $_POST['captcha2'];    
-        
-        if (isset($_POST['send']) && !empty($_POST['author']) && !empty($_POST['comment']) && !empty($_POST['captcha2'])) {
+    /*output of comments*/
+    $comments = get_comments();
 
-            
-            
-           if ($captcha == $captcha2) {
-                
-                $comment['author'] = data_cleaning("'".$_POST['author']."'");
-                $comment['comment'] = data_cleaning("'".$_POST['comment']."'");
-                $comment = implode(',', $comment);
-                add_comment($comment); 
-            }
-            else {
-                $info = "Символы не совпадают";
-            }
-            header("Location: .");
+    /*accept the values from the form*/
+    $author = data_cleaning($_POST['author']);
+    $comment = data_cleaning($_POST['comment']);
+    $captcha = data_cleaning($_POST['captcha']);
+    $captcha2 = data_cleaning($_POST['captcha2']);    
+    
+    if (isset($_POST['send']) && !empty($author) && !empty($comment) && !empty($captcha2)) {
+
+        if ($captcha == $captcha2) {
+
+            $text['author'] = "'" . $author . "'";
+            $text['comment'] = "'" . $comment . "'";
+            $text = implode(',', $text);
+            add_comment($text);
         }
-
+        else {
+            $info = "Введенные цифры не совпадают";
+        }
+       /*header("Location: ."); */
+    }
+    if (isset($_POST['send']) && (empty($author) || empty($comment) || empty($captcha2))) {
         
-        
-    require_once "views/comment_form.php";
+        $info = "Заполните все поля";
+    }
+require_once "views/comment_form.php";
