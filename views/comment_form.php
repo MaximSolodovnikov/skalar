@@ -17,17 +17,20 @@
     </div>
     <div class="wrapper">
         
-        
-        <?php foreach($comments as $item): ?>
-            <div class="comment-answ">
-                <span class="author_comm"><?= $item['author']; ?></span> | <?= $item['comment']; ?><br /><br />
-                <?= $item['time']; ?>
-            </div>
-        <?php endforeach; ?>
+       <?php if (!empty($comments)): ?>
+           
+            <?php foreach($comments as $item): ?>
+                <div class="comment-answ">
+                    <span class="author_comm"><?= $item['author']; ?></span> | <?= $item['comment']; ?><br /><br />
+                    <?= $item['time']; ?>
+                </div>
+            <?php endforeach; ?>
+           
+       <?php endif; ?> 
         
         <div class="comment-form">
         <div class="info"><?= $info; ?></div>
-            <form method="POST" >
+            <form method="POST">
                 <label>Ваше имя:</label><br />
                 <input type="text" name="author" class="text_input" /><br /><br />
                 <label>Оставить отзыв:</label><br />
