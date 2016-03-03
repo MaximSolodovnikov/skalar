@@ -30,7 +30,7 @@
         
         <div class="comment-form">
         <div class="info"><?= $info; ?></div>
-            <form method="POST">
+        <form method="POST" action="index.php">
                 <label>Ваше имя:</label><br />
                 <input type="text" name="author" class="text_input" /><br /><br />
                 <label>Оставить отзыв:</label><br />
