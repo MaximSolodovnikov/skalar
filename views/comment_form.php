@@ -29,7 +29,7 @@
        <?php endif; ?> 
         
         <div class="comment-form">
-        <div class="info"><?= $info; ?></div>
+        <div id="errors" class="info"><?= $info; ?></div>
         <form method="POST" action="index.php">
                 <label>Ваше имя:</label><br />
                 <input type="text" name="author" class="text_input" /><br /><br />
@@ -42,7 +42,7 @@
             </form>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="js/my_valid.js"></script>
     <script src="js/myscript.js"></script>
     </body>
 </html>
