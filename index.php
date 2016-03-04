@@ -18,8 +18,29 @@
             $text['author'] = "'" . $author . "'";
             $text['comment'] = "'" . $comment . "'";
             $text = implode(',', $text);
-            add_comment($text);
-            header("Location: index.php");
+            
+            if ($_FILES['uploadfile']['size'] != 0 ) {
+                if ($_FILES['uploadfile']['size'] <= 1000000) {
+                    if ($FILES['uploadfile']['type'] == 'image/gif'  || 
+                        $FILES['uploadfile']['type'] == 'image/jpeg' ||
+                        $FILES['uploadfile']['type'] == 'image/png' ) {
+                        
+                        add_file();
+                        add_comment($text);
+                        header("Location: ."); 
+                    }
+                    else {
+                        $info = 'Не верный формат файла';
+                    }
+                }
+                else {
+                    $info = 'Превышен размер файла';
+                }    
+            }
+            else {
+                add_comment($text);
+                header("Location: .");     
+            }     
         }
         else {
             $info = "Введенные цифры не совпадают";

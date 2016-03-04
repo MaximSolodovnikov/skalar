@@ -31,19 +31,19 @@ function validateForm() {
   var commentLimit = 500;
 
   if(!authorName) {
-    errors.push("author is empty");
+    errors.push("Вы не ввели Ваше имя");
   } else if(authorName.length > authorNameLimit) {
       errors.push("author max length is " + authorNameLimit);
   }
 
   if(!comment) {
-    errors.push("comment is empty");
+    errors.push("Вы не оставили отзыв");
   } else if(comment.length > commentLimit) {
       errors.push("comment max length is " + commentLimit);
   }
 
   if(!captcha) {
-    errors.push("captcha is empty");
+    errors.push("Вы не ввели цифры для проверки");
   } else if(!(/[0-9]{3}$/.test(captcha))){
     errors.push("captcha should contain 3 digits");
   }

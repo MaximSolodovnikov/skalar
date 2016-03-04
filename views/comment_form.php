@@ -27,10 +27,9 @@
             <?php endforeach; ?>
            
        <?php endif; ?> 
-        
         <div class="comment-form">
         <div id="errors" class="info"><?= $info; ?></div>
-        <form method="POST" action="index.php">
+        <form method="POST"  enctype="multipart/form-data">
                 <label>Ваше имя:</label><br />
                 <input type="text" name="author" class="text_input" /><br /><br />
                 <label>Оставить отзыв:</label><br />
@@ -38,11 +37,11 @@
                 <label>Введите цифры для проверки:</label><br />
                 <input name="captcha" value="<?= captcha(); ?>" readonly="readonly" size="1" class="captcha" />
                 <input name="captcha2" value="" size="1" class="captcha" /><br /><br />
+                <input type="file" name="uploadfile" /><br /><br />
                 <input type="submit" name="send" value="Отправить" class="button" />
             </form>
         </div>
     </div>
     <script type="text/javascript" src="js/my_valid.js"></script>
-    <script src="js/myscript.js"></script>
     </body>
 </html>
