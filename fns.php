@@ -30,17 +30,20 @@ function captcha()
 
 function add_comment($data)
 {
-    db();
     mysql_query("INSERT INTO `comments` (`author`, `comment`) VALUES ($data)");
 }
 
 function get_comments()
 {
-    db();
-    $sel = "SELECT * FROM `comments` ORDER BY id DESC";
+    $sel = "SELECT * FROM `comments` LEFT JOIN `images` ON comments.id = images.comment_id ";
     $res = mysql_query($sel);
     while($row = mysql_fetch_array($res)) {
             $comments[] = $row;
         }
     return $comments;
+}
+
+function add_image($file_name, $comment_id)
+{
+    mysql_query("INSERT INTO `images` (`image`, `comment_id`) VALUES ('$file_name', '$comment_id')");
 }

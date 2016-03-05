@@ -18,25 +18,27 @@
     <div class="wrapper">
         
        <?php if (!empty($comments)): ?>
-           
+
             <?php foreach($comments as $item): ?>
                 <div class="comment-answ">
-                    <span class="author_comm"><?= $item['author']; ?></span> | <?= $item['comment']; ?><br /><br />
+                    <span class="author_comm"><?= $item['author']; ?></span> | <?= $item['comment']; ?><img src="img/<?= $item['image']; ?>" /><br /><br />
                     <?= $item['time']; ?>
                 </div>
             <?php endforeach; ?>
-           
+         
        <?php endif; ?> 
         <div class="comment-form">
         <div id="errors" class="info"><?= $info; ?></div>
         <form method="POST"  enctype="multipart/form-data">
                 <label>Ваше имя:</label><br />
-                <input type="text" name="author" class="text_input" /><br /><br />
+                <input type="text" name="author" value="<?= $author;?>" class="text_input" /><br /><br />
                 <label>Оставить отзыв:</label><br />
-                <textarea name="comment" class="form_textarea"></textarea><br /><br />
+                <textarea name="comment" class="form_textarea"><?= $comment;?></textarea><br /><br />
                 <label>Введите цифры для проверки:</label><br />
                 <input name="captcha" value="<?= captcha(); ?>" readonly="readonly" size="1" class="captcha" />
                 <input name="captcha2" value="" size="1" class="captcha" /><br /><br />
+                <input type="hidden" name="MAX_FILE_SIZE" value="102400">
+                <input type="hidden" name="comment_id" value="<?= $comments[0][0]; ?>">
                 <input type="file" name="uploadfile" /><br /><br />
                 <input type="submit" name="send" value="Отправить" class="button" />
             </form>

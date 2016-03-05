@@ -10,7 +10,7 @@ function showErrors(errors) {
     var errorWrapper = document.createElement('div');
     errorWrapper.innerHTML = error;
     errorsContainer.appendChild(errorWrapper);
-  })
+  });
 
   errorMessageBlock.appendChild(errorsContainer);
 }
