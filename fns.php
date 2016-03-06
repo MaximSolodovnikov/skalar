@@ -1,15 +1,12 @@
 <?php
 
+require_once 'db_conf.php';
+
 function db()
 {
-    $host = 'localhost';
-    $user = 'salomuG';
-    $pswd = 'salomuG';
-    $db = 'comments_form';
-    
-    $connect = mysql_connect($host, $user, $pswd);
-    if(!$connect || !mysql_select_db($db, $connect) ) {
-        return die("ERROR blya");
+    $connect = mysql_connect(HOST, USER, PSWD);
+    if(!$connect || !mysql_select_db(DB, $connect) ) {
+        return die("ERROR");
     }
     else {
         return $connect;
@@ -28,14 +25,15 @@ function captcha()
     return $captcha;
 }
 
-function add_comment($data)
+function add_comment($author, $comment)
 {
-    mysql_query("INSERT INTO `comments` (`author`, `comment`) VALUES ($data)");
+    mysql_query("INSERT INTO `comments` (`author`, `comment`) VALUES ('$author', '$comment')");
+    return mysql_insert_id();
 }
 
 function get_comments()
 {
-    $sel = "SELECT * FROM `comments` LEFT JOIN `images` ON comments.id = images.comment_id ";
+    $sel = "SELECT * FROM `comments` LEFT JOIN `images` ON comments.id = images.comment_id ORDER BY comments.id DESC";
     $res = mysql_query($sel);
     while($row = mysql_fetch_array($res)) {
             $comments[] = $row;
