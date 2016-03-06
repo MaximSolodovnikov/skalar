@@ -17,16 +17,21 @@
     </div>
     <div class="wrapper">
         
+<?php /* Output comments ------------------------->*/ ?>
        <?php if (!empty($comments)): ?>
 
             <?php foreach($comments as $item): ?>
                 <div class="comment-answ">
-                    <span class="author_comm"><?= $item['author']; ?></span> | <?= $item['comment']; ?><?php if ($item['image']){ ?><br /><img src="img/<?= $item['image']; ?>" class="uploadfile" alt="uploadfile" height="100" /><?php } ?><br /><br />
+                    <span class="author_comm"><?= $item['author']; ?></span> | <?= $item['comment']; ?>
+                    <?php if ($item['image']){ ?>
+                        <br /><img src="img/<?= $item['image']; ?>" class="uploadfile" alt="uploadfile" />
+                    <?php } ?><br /><br />
                     <?= $item['time']; ?>
                 </div>
             <?php endforeach; ?>
          
        <?php endif; ?>
+<?php /*<------------------------- Output comments */ ?>
         
         <div class="comment-form">
         <div id="errors" class="info"><?= $error; ?></div>
@@ -36,8 +41,8 @@
                 <label>Оставить отзыв:</label><br />
                 <textarea name="comment" class="form_textarea"><?= $comment;?></textarea><br /><br />
                 <label>Введите цифры для проверки:</label><br />
-                <input name="captcha" value="<?= captcha(); ?>" readonly="readonly" size="1" class="captcha" />
-                <input name="captcha2" value="" size="1" maxlength="3" class="captcha" /><br /><br />
+                <input name="captcha" value="<?= captcha(); ?>" readonly="readonly" size="2" class="captcha" />
+                <input name="captcha2" value="" size="2" maxlength="3" class="captcha" /><br /><br />
                 <input type="file" name="uploadfile" /><br /><br />
                 <input type="submit" name="send" value="Отправить" class="button" />
             </form>

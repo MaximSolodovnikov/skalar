@@ -37,13 +37,13 @@ function validateForm() {
     }
 
     if(!comment) {
-        errors.push("Вы не оставили отзыв");
+        errors.push("Вы не оставили Отзыв");
     } else if(comment.length > commentLimit) {
         errors.push("Максимальная длина поля Отзыв: " + commentLimit + " символов");
     }
 
     if(!captcha) {
-        errors.push("Вы не ввели цифры для проверки");
+        errors.push("Вы не ввели Цифры для проверки");
     } else if(!(/[0-9]{3}$/.test(captcha))){
         errors.push("Поле Цифры для проверки: должно содержать только цифры");
     }

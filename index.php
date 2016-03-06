@@ -16,6 +16,7 @@
 
                 if(is_uploaded_file($_FILES['uploadfile']['tmp_name'])) {
                     if ($_FILES['uploadfile']['size'] < $max_image_size) {
+                        
                         if (($_FILES['uploadfile']['type'] == "image/gif") ||
                             ($_FILES['uploadfile']['type'] == "image/jpeg") || 
                             ($_FILES['uploadfile']['type'] == "image/png")) {
@@ -26,30 +27,29 @@
                     }
                     else {
                         $error = 'Превышен размер файла';
-                    }    
-                }
+                    }
                 if (!$error) {
 
-                    $comment_id = add_comment($author, $comment);
-                    $uploaddir = './img/';
-                    $uploadfile = $uploaddir.basename($_FILES['uploadfile']['name']);
+                $comment_id = add_comment($author, $comment);
+                $uploaddir = './img/';
+                $uploadfilename = time() . $_FILES['uploadfile']['name'];
+                $uploadfile = $uploaddir.basename($uploadfilename);
 
-                    if (@copy($_FILES['uploadfile']['tmp_name'], $uploadfile)) {
-                        $uploadfilename = $_FILES['uploadfile']['name'];
-
-                        add_image($uploadfilename, $comment_id);
-                        header("Location: .");
-                    }
+                if (copy($_FILES['uploadfile']['tmp_name'], $uploadfile)) {
+                    add_image($uploadfilename, $comment_id);
+                    header("Location: .");
                 }
-                else {
-                    $error = "Ошибка записи данных";
-                }
-                header("Location: .");
-            }
-            else {
-                $error = "Введенные цифры не совпадают";
-            }
+            } 
         }
+        else {
+            add_comment($author, $comment);
+            header("Location: .");
+        }
+            }
+        else {
+            $error = "Введенные цифры не совпадают";
+        }
+    }
         else {
             $error = "Заполните все поля";
         }       

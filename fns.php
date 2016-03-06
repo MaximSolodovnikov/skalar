@@ -1,12 +1,10 @@
-<?php
-
-require_once 'db_conf.php';
+<?php require_once 'db_conf.php';
 
 function db()
 {
     $connect = mysql_connect(HOST, USER, PSWD);
     if(!$connect || !mysql_select_db(DB, $connect) ) {
-        return die("ERROR");
+        return die("Error with connection or selection of Database <br />" . mysql_error());
     }
     else {
         return $connect;
@@ -31,6 +29,11 @@ function add_comment($author, $comment)
     return mysql_insert_id();
 }
 
+function add_image($file_name, $comment_id)
+{
+    mysql_query("INSERT INTO `images` (`image`, `comment_id`) VALUES ('$file_name', '$comment_id')");
+}
+
 function get_comments()
 {
     $sel = "SELECT * FROM `comments` LEFT JOIN `images` ON comments.id = images.comment_id ORDER BY comments.id DESC";
@@ -39,9 +42,4 @@ function get_comments()
             $comments[] = $row;
         }
     return $comments;
-}
-
-function add_image($file_name, $comment_id)
-{
-    mysql_query("INSERT INTO `images` (`image`, `comment_id`) VALUES ('$file_name', '$comment_id')");
 }
