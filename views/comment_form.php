@@ -36,18 +36,25 @@
         <div class="comment-form">
         <div id="errors" class="info"><?= $error; ?></div>
             <form method="POST"  enctype="multipart/form-data">
-                <label>Ваше имя:</label><br />
-                <input type="text" name="author" value="<?= $author;?>" class="text_input" /><br /><br />
-                <label>Оставить отзыв:</label><br />
-                <textarea name="comment" class="form_textarea"><?= $comment;?></textarea><br /><br />
-                <label>Введите цифры для проверки:</label><br />
-                <input name="captcha" value="<?= captcha(); ?>" readonly="readonly" size="2" class="captcha" />
-                <input name="captcha2" value="" size="2" maxlength="3" class="captcha" /><br /><br />
-                <input type="file" name="uploadfile" /><br /><br />
-                <input type="submit" name="send" value="Отправить" class="button" />
+                <label>Ваше имя:</label>
+				<br>
+                <input type="text" name="author" value="<?= $author; ?>" class="text_input" required>
+				<br><br>
+                <label>Оставить отзыв:</label>
+				<br>
+                <textarea name="comment" class="form_textarea"><?= $comment; ?></textarea>
+				<br><br>
+                <label>Введите цифры для проверки:</label>
+				<br>
+                <input name="captcha" value="<?= captcha(); ?>" readonly="readonly" size="2" class="captcha">
+                <input name="captcha2" value="" size="2" maxlength="3" class="captcha" />
+				<br><br>
+                <input type="file" name="uploadfile" />
+				<br><br>
+                <input type="submit" name="send" value="Отправить" class="button">
             </form>
         </div>
     </div>
-    <script type="text/javascript" src="js/my_valid.js"></script>
+    <script src="js/my_valid.js"></script>
     </body>
 </html>
